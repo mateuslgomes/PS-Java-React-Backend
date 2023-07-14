@@ -40,5 +40,12 @@ public class TransferenciaService {
                 .collect(Collectors.toList());
     }
 
+    public List<TransferenciaResponse> findByNomeOperadorTrasacao(String nome) {
+        List<Transferencia> transferencias = transferenciaRepository.findByNomeOperadorTransacao(nome);
+
+        return transferencias.stream()
+                .map(TransferenciaResponse::of)
+                .collect(Collectors.toList());
+    }
 
 }
