@@ -48,4 +48,15 @@ public class TransferenciaService {
                 .collect(Collectors.toList());
     }
 
+    public List<TransferenciaResponse> findByNomeOperadorTrasacaoAndDataTransferenciaBetween(String nomeOperador,
+            LocalDateTime dataInicio, LocalDateTime dataFim) {
+
+        List<Transferencia> transferencias = transferenciaRepository.
+                findByNomeOperadorTrasacaoAndDataTransferenciaBetween(nomeOperador, dataInicio, dataFim);
+
+        return transferencias.stream()
+                .map(TransferenciaResponse::of)
+                .collect(Collectors.toList());
+    }
+
 }

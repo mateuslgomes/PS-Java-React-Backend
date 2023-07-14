@@ -39,4 +39,14 @@ public class TransferenciaController {
         return transferenciaService.findByNomeOperadorTrasacao(nomeOperador);
     }
 
+    @GetMapping("transferencia-operador")
+    public List<TransferenciaResponse> buscarPorNomeOperadorData(
+            @RequestParam("operador") String nomeOperador,
+            @RequestParam("dataInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
+            @RequestParam("dataFim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
+
+        return transferenciaService.findByNomeOperadorTrasacaoAndDataTransferenciaBetween(nomeOperador, dataInicio, dataFim);
+    }
+
+
 }
