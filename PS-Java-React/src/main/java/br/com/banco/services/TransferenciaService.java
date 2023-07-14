@@ -6,6 +6,7 @@ import br.com.banco.repositories.TransferenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,14 @@ public class TransferenciaService {
 
     public List<TransferenciaResponse> findById(Long id) {
         List<Transferencia> transferencias = transferenciaRepository.findByContaIdConta(id);
+
+        return transferencias.stream()
+                .map(TransferenciaResponse::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<TransferenciaResponse> findByDataTransferenciaBetween(LocalDateTime dataInicio, LocalDateTime dataFim) {
+        List<Transferencia> transferencias = transferenciaRepository.findByDataTransferenciaBetween(dataInicio, dataFim);
 
         return transferencias.stream()
                 .map(TransferenciaResponse::of)

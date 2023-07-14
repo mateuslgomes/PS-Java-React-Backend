@@ -1,7 +1,6 @@
 package br.com.banco.services;
 
 import br.com.banco.dtos.response.ContaResponse;
-import br.com.banco.dtos.response.TransferenciaResponse;
 import br.com.banco.model.Conta;
 import br.com.banco.repositories.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
