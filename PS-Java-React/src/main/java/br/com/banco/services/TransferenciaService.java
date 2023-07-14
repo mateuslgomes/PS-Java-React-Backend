@@ -23,4 +23,13 @@ public class TransferenciaService {
                 .collect(Collectors.toList());
     }
 
+    public List<TransferenciaResponse> findById(Long id) {
+        List<Transferencia> transferencias = transferenciaRepository.findByContaIdConta(id);
+
+        return transferencias.stream()
+                .map(TransferenciaResponse::of)
+                .collect(Collectors.toList());
+    }
+
+
 }
