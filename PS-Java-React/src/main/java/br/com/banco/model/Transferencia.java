@@ -1,7 +1,9 @@
 package br.com.banco.model;
 
 import br.com.banco.enums.Tipo;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "transferencia")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Transferencia {
 
     @Id

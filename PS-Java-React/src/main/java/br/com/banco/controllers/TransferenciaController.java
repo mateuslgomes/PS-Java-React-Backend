@@ -27,19 +27,19 @@ public class TransferenciaController {
         return ResponseEntity.ok(transferenciaService.findById(id));
     }
 
-    @GetMapping("transferencia-periodo")
+    @GetMapping("find-periodo")
     public List<TransferenciaResponse> buscarTransferenciasPorPeriodo(
             @RequestParam("dataInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
             @RequestParam("dataFim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
         return transferenciaService.findByDataTransferenciaBetween(dataInicio, dataFim);
     }
 
-    @GetMapping("transferencia-operador")
+    @GetMapping("find-operador")
     public List<TransferenciaResponse> buscarPorNomeOperador(@RequestParam("operador") String nomeOperador) {
         return transferenciaService.findByNomeOperadorTrasacao(nomeOperador);
     }
 
-    @GetMapping("transferencia-operador")
+    @GetMapping("find-operador-data")
     public List<TransferenciaResponse> buscarPorNomeOperadorData(
             @RequestParam("operador") String nomeOperador,
             @RequestParam("dataInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
@@ -47,6 +47,5 @@ public class TransferenciaController {
 
         return transferenciaService.findByNomeOperadorTrasacaoAndDataTransferenciaBetween(nomeOperador, dataInicio, dataFim);
     }
-
 
 }

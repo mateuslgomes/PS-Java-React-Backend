@@ -52,7 +52,7 @@ public class TransferenciaService {
             LocalDateTime dataInicio, LocalDateTime dataFim) {
 
         List<Transferencia> transferencias = transferenciaRepository.
-                findByNomeOperadorTrasacaoAndDataTransferenciaBetween(nomeOperador, dataInicio, dataFim);
+                findByNomeOperadorTransacaoAndDataTransferenciaBetween(nomeOperador, dataInicio, dataFim);
 
         return transferencias.stream()
                 .map(TransferenciaResponse::of)
