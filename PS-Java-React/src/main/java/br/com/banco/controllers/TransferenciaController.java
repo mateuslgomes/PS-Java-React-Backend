@@ -18,8 +18,8 @@ public class TransferenciaController {
     TransferenciaService transferenciaService;
 
     @GetMapping("all")
-    public List<TransferenciaResponse> buscarTodos() {
-        return transferenciaService.findAll();
+    public ResponseEntity<List<TransferenciaResponse>> buscarTodos() {
+        return ResponseEntity.ok(transferenciaService.findAll());
     }
 
     @GetMapping("{id}")
@@ -28,24 +28,25 @@ public class TransferenciaController {
     }
 
     @GetMapping("find-periodo")
-    public List<TransferenciaResponse> buscarTransferenciasPorPeriodo(
+    public ResponseEntity<List<TransferenciaResponse>> buscarTransferenciasPorPeriodo(
             @RequestParam("dataInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
             @RequestParam("dataFim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
-        return transferenciaService.findByDataTransferenciaBetween(dataInicio, dataFim);
+        return ResponseEntity.ok(transferenciaService.findByDataTransferenciaBetween(dataInicio, dataFim));
     }
 
     @GetMapping("find-operador")
-    public List<TransferenciaResponse> buscarPorNomeOperador(@RequestParam("operador") String nomeOperador) {
-        return transferenciaService.findByNomeOperadorTrasacao(nomeOperador);
+    public ResponseEntity<List<TransferenciaResponse>> buscarPorNomeOperador(@RequestParam("operador") String nomeOperador) {
+        return ResponseEntity.ok(transferenciaService.findByNomeOperadorTrasacao(nomeOperador));
     }
 
     @GetMapping("find-operador-data")
-    public List<TransferenciaResponse> buscarPorNomeOperadorData(
+    public ResponseEntity<List<TransferenciaResponse>> buscarPorNomeOperadorData(
             @RequestParam("operador") String nomeOperador,
             @RequestParam("dataInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
             @RequestParam("dataFim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
 
-        return transferenciaService.findByNomeOperadorTrasacaoAndDataTransferenciaBetween(nomeOperador, dataInicio, dataFim);
+        return ResponseEntity.ok(transferenciaService.findByNomeOperadorTrasacaoAndDataTransferenciaBetween
+                (nomeOperador, dataInicio, dataFim));
     }
 
 }
